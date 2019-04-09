@@ -44,4 +44,40 @@ public class Board {
     }
 
 
+    public boolean hasWon(Player player) {
+        if(isVerticallyFilled(player)){
+            return true;
+        } else if(isHorizontallyFilled(player)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isHorizontallyFilled(Player player) {
+        for(int row = 0; row<BOUNDARY ; row++) {
+            int count = 0;
+            for(int col = 0;col<BOUNDARY;col++) {
+                if(boardLayout[row][col].equals(player)){
+                    count++;
+                }
+            }
+            if(count == 3)
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isVerticallyFilled(Player player) {
+        for(int col = 0;col<BOUNDARY;col++) {
+            int count = 0;
+            for(int row = 0; row<BOUNDARY ; row++) {
+                 if(boardLayout[row][col].equals(player)){
+                     count++;
+                 }
+            }
+            if(count == 3)
+                return true;
+        }
+        return false;
+    }
 }

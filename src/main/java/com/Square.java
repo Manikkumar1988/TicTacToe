@@ -19,4 +19,22 @@ public class Square {
     public Player getPlayer() {
         return player;
     }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(player == null)
+            return false;
+        if(obj instanceof Player) {
+            return this.player.equals(obj);
+        }
+        return false;
+    }
 }
