@@ -30,19 +30,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-task codeCoverageReport(type: JacocoReport) {
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-
-    subprojects.each {
-        sourceSets it.sourceSets.main
-    }
-
+jacocoTestReport {
     reports {
         xml.enabled true
         html.enabled true
-        csv.enabled false
+        csv.enabled true
     }
 }
+
 
 // Define the main class for the application
 mainClassName = 'com.App'
