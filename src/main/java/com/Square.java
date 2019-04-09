@@ -2,7 +2,15 @@ package com;
 
 public class Square {
 
+    private final int row;
+    private final int col;
+
     private Player player;
+
+    public Square(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 
     public void setPlayer(Player player) {
         this.player = player;

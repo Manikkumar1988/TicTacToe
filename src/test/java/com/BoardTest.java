@@ -46,7 +46,6 @@ public class BoardTest {
     @Test
     public void hasPlayerWon_shouldReturnTrue_IfVerticallyFilled() {
         //Given
-        //Given
         Board board = new Board();
         Player player = new Player();
         List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();

@@ -15,7 +15,7 @@ public class Board {
 
         for(int row=0;row<BOUNDARY;row++) {
             for(int col=0;col<BOUNDARY;col++) {
-                boardLayout[row][col] = new Square();
+                boardLayout[row][col] = new Square(row, col);
             }
         }
     }
