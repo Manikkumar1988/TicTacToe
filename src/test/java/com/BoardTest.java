@@ -72,6 +72,20 @@ public class BoardTest {
         assertEquals(true,board.hasWon(player));
     }
 
+    @Test
+    public void hasPlayerWon_shouldReturnFalse_IfSecondColumnNotFilled() {
+        //Given
+        Board board = new Board();
+        Player player = new Player("X");
+
+        //when
+        board.placeMarker(player,new Position(0,1));
+        board.placeMarker(player,new Position(2,1));
+
+        //Then
+        assertEquals(false,board.hasWon(player));
+    }
+
 
 
     @Test
@@ -90,7 +104,7 @@ public class BoardTest {
     }
 
     @Test
-    public void hasPlayerWon_shouldReturnTrue_IfSecondRowilled() {
+    public void hasPlayerWon_shouldReturnTrue_IfSecondRowFilled() {
         //Given
         Board board = new Board();
         Player player = new Player("X");
@@ -102,5 +116,32 @@ public class BoardTest {
 
         //Then
         assertEquals(true,board.hasWon(player));
+    }
+
+    @Test
+    public void hasPlayerWon_shouldReturnFalse_IfSecondRowNotFilled() {
+        //Given
+        Board board = new Board();
+        Player player = new Player("X");
+
+        //when
+        board.placeMarker(player,new Position(1,0));
+        board.placeMarker(player,new Position(1,2));
+
+        //Then
+        assertEquals(false,board.hasWon(player));
+    }
+
+    @Test
+    public void toString_emptyBlock_afterInitialize() {
+        //Given
+        Board board = new Board();
+
+        //When
+        String actual = board.toString();
+
+        String expected = "_\t_\t_\t\n_\t_\t_\t\n_\t_\t_\t\n";
+
+        assertEquals(expected,actual);
     }
 }

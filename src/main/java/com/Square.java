@@ -39,7 +39,7 @@ public class Square {
     }
 
     public String getOccupiedSymbol() {
-        if(isEmpty()) {
+        if(!isEmpty()) {
             return player.getSymbol();
         }
         return "_";

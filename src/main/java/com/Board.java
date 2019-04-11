@@ -22,24 +22,10 @@ public class Board {
     public boolean hasEmptyPosition() {
         for(int row=0;row<BOUNDARY;row++) {
             for(int col=0;col<BOUNDARY;col++) {
-                if(boardLayout[row][col].isEmpty()) {
-                    return true;
-                }
+                return  boardLayout[row][col].isEmpty();
             }
         }
         return false;
-    }
-
-    private List<Square> getNonFilledEmptyPosition() {
-        List<Square> squares = new ArrayList<>();
-        for(int row=0;row<BOUNDARY;row++) {
-            for(int col=0;col<BOUNDARY;col++) {
-                if(boardLayout[row][col].isEmpty()) {
-                    squares.add(boardLayout[row][col]);
-                }
-            }
-        }
-        return squares;
     }
 
 
