@@ -16,8 +16,8 @@ public class Square {
         this.player = player;
     }
 
-    public Player getPlayer() {
-        return player;
+    public boolean isEmpty() {
+        return player == null;
     }
 
     public int getRow() {
@@ -36,5 +36,12 @@ public class Square {
             return this.player.equals(obj);
         }
         return false;
+    }
+
+    public String getOccupiedSymbol() {
+        if(isEmpty()) {
+            return player.getSymbol();
+        }
+        return "_";
     }
 }

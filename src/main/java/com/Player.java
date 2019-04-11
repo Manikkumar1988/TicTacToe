@@ -1,8 +1,5 @@
 package com;
 
-import java.util.List;
-import java.util.Random;
-
 public class Player {
 
     private final String type;

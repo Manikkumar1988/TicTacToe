@@ -2,7 +2,6 @@ package com;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Board {
 
@@ -23,7 +22,7 @@ public class Board {
     public boolean hasEmptyPosition() {
         for(int row=0;row<BOUNDARY;row++) {
             for(int col=0;col<BOUNDARY;col++) {
-                if(Objects.isNull(boardLayout[row][col].getPlayer())) {
+                if(boardLayout[row][col].isEmpty()) {
                     return true;
                 }
             }
@@ -35,7 +34,7 @@ public class Board {
         List<Square> squares = new ArrayList<>();
         for(int row=0;row<BOUNDARY;row++) {
             for(int col=0;col<BOUNDARY;col++) {
-                if(Objects.isNull(boardLayout[row][col].getPlayer())) {
+                if(boardLayout[row][col].isEmpty()) {
                     squares.add(boardLayout[row][col]);
                 }
             }
@@ -88,6 +87,19 @@ public class Board {
     }
 
     private boolean isValid(Square square) {
-        return square.getPlayer()==null;
+        return square.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer bl = new StringBuffer();
+        for(int row=0;row<BOUNDARY;row++) {
+            for (int col = 0; col < BOUNDARY; col++) {
+                bl.append(boardLayout[row][col].getOccupiedSymbol());
+                bl.append("\t");
+            }
+            bl.append("\n");
+        }
+        return bl.toString();
     }
 }
