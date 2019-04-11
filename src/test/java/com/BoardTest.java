@@ -2,10 +2,8 @@ package com;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static com.Board.BOUNDARY;
+import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
 
@@ -16,11 +14,12 @@ public class BoardTest {
         Player player = new Player("X");
 
         //When
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
-        do{
-            player.play(nonFilledEmptyPositionList);
-            nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
-        }while (nonFilledEmptyPositionList.size()>0);
+            for(int row=0;row<BOUNDARY;row++) {
+                for (int col = 0; col < BOUNDARY; col++) {
+                    board.placeMarker(player,new Position(row,col));
+                }
+            }
+
 
 
         boolean noOfEmptyPosition = board.hasEmptyPosition();
@@ -34,10 +33,9 @@ public class BoardTest {
         //Given
         Board board = new Board();
         Player player = new Player("X");
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
 
         //When
-        player.play(nonFilledEmptyPositionList);
+        board.placeMarker(player, new Position(0,0));
         boolean noOfEmptyPosition = board.hasEmptyPosition();
 
         //Then
@@ -49,12 +47,11 @@ public class BoardTest {
         //Given
         Board board = new Board();
         Player player = new Player("X");
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
 
         //when
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,0,0,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,1,0,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,2,0,player)));
+        board.placeMarker(player,new Position(0,0));
+        board.placeMarker(player,new Position(1,0));
+        board.placeMarker(player,new Position(2,0));
 
         //Then
         assertEquals(true,board.hasWon(player));
@@ -65,32 +62,16 @@ public class BoardTest {
         //Given
         Board board = new Board();
         Player player = new Player("X");
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
 
         //when
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,0,1,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,1,1,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,2,1,player)));
+        board.placeMarker(player,new Position(0,1));
+        board.placeMarker(player,new Position(1,1));
+        board.placeMarker(player,new Position(2,1));
 
         //Then
         assertEquals(true,board.hasWon(player));
     }
 
-    @Test
-    public void hasPlayerWon_shouldReturnTrue_IfThirdColumnFilled() {
-        //Given
-        Board board = new Board();
-        Player player = new Player("X");
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
-
-        //when
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,0,2,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,1,2,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,2,2,player)));
-
-        //Then
-        assertEquals(true,board.hasWon(player));
-    }
 
 
     @Test
@@ -98,12 +79,11 @@ public class BoardTest {
         //Given
         Board board = new Board();
         Player player = new Player("X");
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
 
         //when
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,0,0,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,0,1,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,0,2,player)));
+        board.placeMarker(player,new Position(0,0));
+        board.placeMarker(player,new Position(0,1));
+        board.placeMarker(player,new Position(0,2));
 
         //Then
         assertEquals(true,board.hasWon(player));
@@ -114,39 +94,13 @@ public class BoardTest {
         //Given
         Board board = new Board();
         Player player = new Player("X");
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
 
         //when
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,1,0,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,1,1,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,1,2,player)));
+        board.placeMarker(player,new Position(1,0));
+        board.placeMarker(player,new Position(1,1));
+        board.placeMarker(player,new Position(1,2));
 
         //Then
         assertEquals(true,board.hasWon(player));
-    }
-
-    @Test
-    public void hasPlayerWon_shouldReturnTrue_IfThirdRowFilled() {
-        //Given
-        Board board = new Board();
-        Player player = new Player("X");
-        List<Square> nonFilledEmptyPositionList = board.getNonFilledEmptyPosition();
-
-        //when
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,2,0,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,2,1,player)));
-        player.play(Arrays.asList(getMatchingSquare(nonFilledEmptyPositionList,2,2,player)));
-
-        //Then
-        assertEquals(true,board.hasWon(player));
-    }
-
-    public Square getMatchingSquare(List<Square> nonFilledEmptyPositionList, int row, int col, Player player) {
-        for(Square square:nonFilledEmptyPositionList) {
-            if(square.getRow()==row && square.getCol() == col) {
-                return square;
-            }
-        }
-        return null;
     }
 }

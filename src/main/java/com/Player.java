@@ -5,17 +5,18 @@ import java.util.Random;
 
 public class Player {
 
-    private final Random random;
     private final String type;
 
     Player(String type) {
         this.type = type;
-        random = new Random();
     }
 
-    public void play(List<Square> nonFilledEmptyPositionList) {
-        Square square = nonFilledEmptyPositionList.get(random.nextInt(nonFilledEmptyPositionList.size()));
+    public void play(Square square) {
         square.setPlayer(this);
+    }
+
+    public String getSymbol() {
+        return type;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class Board {
         return false;
     }
 
-    public List<Square> getNonFilledEmptyPosition() {
+    private List<Square> getNonFilledEmptyPosition() {
         List<Square> squares = new ArrayList<>();
         for(int row=0;row<BOUNDARY;row++) {
             for(int col=0;col<BOUNDARY;col++) {
@@ -79,5 +79,15 @@ public class Board {
                 return true;
         }
         return false;
+    }
+
+    public void placeMarker(Player player, Position position) {
+        if(isValid(boardLayout[position.getRow()][position.getCol()])) {
+            player.play(boardLayout[position.getRow()][position.getCol()]);
+        }
+    }
+
+    private boolean isValid(Square square) {
+        return square.getPlayer()==null;
     }
 }
