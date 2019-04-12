@@ -12,7 +12,7 @@ public class Player {
         square.setPlayer(this);
     }
 
-    public String getSymbol() {
+    public String toString() {
         return type;
     }
 

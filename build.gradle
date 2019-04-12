@@ -40,4 +40,4 @@ jacocoTestReport {
 
 
 // Define the main class for the application
-mainClassName = 'com.App'
+mainClassName = 'com.Game'

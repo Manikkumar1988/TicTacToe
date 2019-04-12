@@ -1,8 +1,5 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Board {
 
     public static final int BOUNDARY = 3;
@@ -14,7 +11,7 @@ public class Board {
 
         for(int row=0;row<BOUNDARY;row++) {
             for(int col=0;col<BOUNDARY;col++) {
-                boardLayout[row][col] = new Square(row, col);
+                boardLayout[row][col] = new Square(new Position(row, col));
             }
         }
     }
@@ -22,7 +19,8 @@ public class Board {
     public boolean hasEmptyPosition() {
         for(int row=0;row<BOUNDARY;row++) {
             for(int col=0;col<BOUNDARY;col++) {
-                return  boardLayout[row][col].isEmpty();
+                if(boardLayout[row][col].isEmpty())
+                    return true;
             }
         }
         return false;
@@ -67,12 +65,16 @@ public class Board {
     }
 
     public void placeMarker(Player player, Position position) {
-        if(isValid(boardLayout[position.getRow()][position.getCol()])) {
-            player.play(boardLayout[position.getRow()][position.getCol()]);
+        if(isLegalMove(getSquare(position))) {
+            player.play(getSquare(position));
         }
     }
 
-    private boolean isValid(Square square) {
+    private Square getSquare(Position position) {
+        return boardLayout[position.getRow()][position.getCol()];
+    }
+
+    private boolean isLegalMove(Square square) {
         return square.isEmpty();
     }
 
@@ -81,7 +83,7 @@ public class Board {
         StringBuffer bl = new StringBuffer();
         for(int row=0;row<BOUNDARY;row++) {
             for (int col = 0; col < BOUNDARY; col++) {
-                bl.append(boardLayout[row][col].getOccupiedSymbol());
+                bl.append(boardLayout[row][col].toString());
                 bl.append("\t");
             }
             bl.append("\n");

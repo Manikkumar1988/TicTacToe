@@ -2,14 +2,12 @@ package com;
 
 public class Square {
 
-    private final int row;
-    private final int col;
+    private final Position position;
 
     private Player player;
 
-    public Square(int row, int col) {
-        this.row = row;
-        this.col = col;
+    public Square(Position position) {
+        this.position = position;
     }
 
     public void setPlayer(Player player) {
@@ -20,13 +18,10 @@ public class Square {
         return player == null;
     }
 
-    public int getRow() {
-        return row;
+    public Position getPosition() {
+        return position;
     }
 
-    public int getCol() {
-        return col;
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -38,9 +33,11 @@ public class Square {
         return false;
     }
 
-    public String getOccupiedSymbol() {
+
+    @Override
+    public String toString() {
         if(!isEmpty()) {
-            return player.getSymbol();
+            return player.toString();
         }
         return "_";
     }
